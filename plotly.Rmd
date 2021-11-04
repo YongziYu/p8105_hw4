@@ -1,0 +1,53 @@
+---
+title: "Plotly"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+This page is about making some plotly examples.
+
+```{r}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+library(dplyr)
+```
+
+
+## Make a scatterplot
+
+Here's a plotly scatterplot!
+
+```{r}
+instacart =
+  instacart %>%
+  janitor::clean_names() %>%
+  filter(
+    department == "snacks"
+  )
+
+aisle_plot=
+  instacart %>%
+  group_by(aisle) %>%
+  summarise(
+    count_order=n()
+  ) %>%
+  mutate(aisle=fct_reorder(aisle,count_order)) %>%
+   plot_ly(x = ~aisle, y = ~count_order, color = ~aisle, type = "bar", colors = "viridis")
+aisle_plot
+
+popular_items=
+  instacart %>%
+  group_by(days_since_prior_order,aisle,product_name) %>%
+  summarise(count_n=n()) %>%
+  arrange(desc(count_n),.by_group=TRUE)
+
+scatter =
+  popular_items %>%
+  mutate(product_name = fct_reorder(product_name,days_since_prior_order)) %>% 
+ plot_ly(y = ~days_since_prior_order, color = ~product_name, type = "box", colors = "viridis")
+
+scatter
+```

@@ -1,0 +1,19 @@
+---
+title: "Yongzi Yu.github.io"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+ 
+---
+
+# This is Yongzi's awesome website
+
+
+
+
+here is my [resume](about.html) page:
+
+#My image
+<img src="images/ted.jpg" style="width:75%">
+
