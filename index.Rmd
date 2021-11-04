@@ -12,7 +12,7 @@ output:
 
 
 
-here is my [resume](about.html) page:
+here is my [resume](resume.html) page:
 
 #My image
 <img src="images/ted.jpg" style="width:75%">
