@@ -14,12 +14,7 @@ library(p8105.datasets)
 library(plotly)
 library(dplyr)
 ```
-
-
 ## Make a scatterplot
-
-Here's a plotly scatterplot!
-
 ```{r}
 instacart =
   instacart %>%
@@ -37,17 +32,16 @@ aisle_plot=
   mutate(aisle=fct_reorder(aisle,count_order)) %>%
    plot_ly(x = ~aisle, y = ~count_order, color = ~aisle, type = "bar", colors = "viridis")
 aisle_plot
+```
+## Plotly boxplot
+```{r}
 
-popular_items=
-  instacart %>%
-  group_by(days_since_prior_order,aisle,product_name) %>%
-  summarise(count_n=n()) %>%
-  arrange(desc(count_n),.by_group=TRUE)
 
-scatter =
-  popular_items %>%
-  mutate(product_name = fct_reorder(product_name,days_since_prior_order)) %>% 
- plot_ly(y = ~days_since_prior_order, color = ~product_name, type = "box", colors = "viridis")
+box=
+  instacart%>%
+  mutate(
+    aisle = fct_reorder(aisle,days_since_prior_order)) %>% 
+ plot_ly(y = ~days_since_prior_order, color = ~aisle, type = "box", colors = "viridis")
 
-scatter
+box
 ```
